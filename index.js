@@ -11,6 +11,7 @@ require("dotenv").config()
 const CLIENT_ID = process.env.CLIENT_ID
 const CLIENT_SECRET = process.env.CLIENT_SECRET
 const API_TOKEN = process.env.API_TOKEN
+const BOT_API_TOKEN = process.env.BOT_API_TOKEN
 const RDP_REACTION_ID = process.env.RDP_REACTION_ID // Should be "bookmark"
 const RDP_LINK = process.env.RDP_LINK
 const DEBUG = process.env.DEBUG
@@ -19,6 +20,7 @@ const RDP_CHANNEL = process.env.RDP_CHANNEL
 
 const app = express()
 const web = new WebClient(API_TOKEN)
+const webBot = new WebClient(BOT_API_TOKEN)
 app.use(bodyParser.json())
 
 function createResponseErrorBody(error) {
@@ -139,7 +141,7 @@ function shareToChannel(messageText) {
 
 function sendImmediateReminder(messageText, userId) {
     const text = "Tu viens de partager " + messageText + ".\nÇa te dirait de l'ajouter à la RdP ? (<" + RDP_LINK + ">)"
-    return web.chat.postMessage(userId, text, {
+    return webBot.chat.postMessage(userId, text, {
         as_user: false        
     })
 }
