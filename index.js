@@ -138,7 +138,7 @@ function shareToChannel(messageText) {
 }
 
 function sendImmediateReminder(messageText, userId) {
-    const text = "Tu viens de partager " + messageText + ".\nÇa te dirait de l'ajouter à la RdP ? (<" + RDP_LINK + ">)"
+    const text = "Le message " + messageText + " viens d'être partagé sur #revue-de-presse.\nTu peux l'ajouter à l'article RdP du blog ici : <" + RDP_LINK + ">"
     return web.chat.postMessage(userId, text, {
         as_user: false        
     })
